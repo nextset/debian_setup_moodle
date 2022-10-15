@@ -36,3 +36,27 @@ sudo passwd name_user
 reboot
 ```
 
+## Init ZSH
+
+```
+sudo apt-get install -y zsh
+```
+
+Install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh):
+
+```
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+Configure some needed aliases:
+
+```
+vim ~/.zshrc
+    alias cls="clear"
+```
+
+about SHELL
+
+```
+echo $SHELL
+```
