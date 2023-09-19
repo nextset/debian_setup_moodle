@@ -116,3 +116,47 @@ max_execution_time = 360
 post_max_size = 8M
 cgi.fix_pathinfo=0
 ```
+## Install moodle
+```
+cd /opt
+```
+```
+sudo git clone git://git.moodle.org/moodle.git
+```
+```
+cd moodle
+```
+```
+sudo git branch -a
+```
+```
+sudo git branch --track MOODLE_311_STABLE origin/MOODLE_311_STABLE
+```
+```
+sudo git checkout MOODLE_311_STABLE
+```
+```
+sudo cp -R /opt/moodle /var/www/html/
+```
+```
+cd
+```
+```
+sudo mkdir /var/moodledata
+```
+```
+sudo chown -R www-data /var/moodledata
+```
+```
+sudo chmod -R 777 /var/moodledata
+```
+```
+sudo chmod -R 777 /var/www/html/moodle
+```
+```
+sudo chown -R www-data /var/www/html/moodle
+```
+```
+su -
+reboot
+```
