@@ -63,7 +63,7 @@ about SHELL
 ```
 echo $SHELL
 ```
-MariaDB
+## MariaDB
 
 ```
 sudo apt install -y mariadb-server mariadb-client
@@ -93,4 +93,26 @@ CREATE USER 'moodleuser'@'localhost' IDENTIFIED BY 'linuxer2022';
 GRANT ALL ON moodle.* TO 'moodleuser'@'localhost' IDENTIFIED BY 'linuxer2022'WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 exit
+```
+## Setting PHP
+```
+apt-cache policy php
+sudo apt install php
+
+```
+```
+php -v
+```
+```
+sudo apt install php7.4-mysql php7.4-gmp php7.4-fpm php7.4-curl php7.4-intl php7.4-mbstring php7.4-soap php7.4-gd php7.4-zip php7.4-gd php7.4-xml php7.4-readline php7.4-opcache php7.4-json php7.4-cli php7.4-common
+```
+```
+sudo nano /etc/php/7.4/fpm/php.ini
+file_uploads = On
+allow_url_fopen = On
+memory_limit = 300M
+upload_max_filesize = 100M
+max_execution_time = 360
+post_max_size = 8M
+cgi.fix_pathinfo=0
 ```
