@@ -82,7 +82,7 @@ innodb_large_prefix = 1
 
 sudo service mysql restart
 ```
-New BD for moodle
+New database for moodle
 ```
 sudo mariadb -u root -p
 ```
