@@ -160,3 +160,67 @@ sudo chown -R www-data /var/www/html/moodle
 su -
 reboot
 ```
+## Nginx conf:
+```
+sudo nano /etc/nginx/nginx.conf
+```
+```
+http{
+keepalive_timeout 2;
+}
+```
+```
+sudo nano /etc/nginx/sites-available/moodle
+```
+```
+server {
+listen 80;
+listen [::]:80;
+root /var/www/html/moodle;
+index index.php index.html index.htm;
+server_name 81.163.27.120;
+
+location / {
+try_files $uri $uri/ =404;
+}
+
+client_max_body_size 8M;
+
+location /dataroot/ {
+internal;
+alias /var/moodledata/;
+}
+
+location ~ [^/]\.php(/|$) {
+    fastcgi_split_path_info  ^(.+\.php)(/.+)$;
+    fastcgi_index            index.php;
+    fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+    include                  fastcgi_params;
+    fastcgi_param   PATH_INFO       $fastcgi_path_info;
+    fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
+}   
+
+location ~* \.(ico|pdf|flv)$ {
+
+        expires 28d;
+        
+    }   
+    
+location ~* \.(js|css|png|jpg|jpeg|gif|swf|xml|txt)$ {
+
+        expires 7d;
+}
+}
+```
+```
+sudo ln -s /etc/nginx/sites-available/moodle /etc/nginx/sites-enabled/
+```
+```
+sudo systemctl restart nginx.service
+```
+```
+nginx -t
+Status:
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
