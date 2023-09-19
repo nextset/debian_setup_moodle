@@ -27,7 +27,10 @@ sudo vim /etc/ssh/sshd_config
     PermitRootLogin no
     PasswordAuthentication no
 ```
-
+```
+nano /etc/sudoers
+user_name ALL=(ALL)  ALL
+```
 Restart SSH server, change `name_user` user password:
 
 ```
