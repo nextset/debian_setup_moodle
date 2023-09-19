@@ -63,3 +63,34 @@ about SHELL
 ```
 echo $SHELL
 ```
+MariaDB
+
+```
+sudo apt install -y mariadb-server mariadb-client
+```
+```
+sudo mysql_secure_installation
+```
+Setting for moodle
+
+```
+sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
+default_storage_engine = innodb
+innodb_file_per_table = 1
+innodb_file_format = Barracuda
+innodb_large_prefix = 1
+
+sudo service mysql restart
+```
+New BD for moodle
+```
+sudo mariadb -u root -p
+```
+```
+show databases;
+CREATE DATABASE moodle;
+CREATE USER 'moodleuser'@'localhost' IDENTIFIED BY 'linuxer2022';
+GRANT ALL ON moodle.* TO 'moodleuser'@'localhost' IDENTIFIED BY 'linuxer2022'WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+exit
+```
